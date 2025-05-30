@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#session-1-introduction-setup" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -241,6 +246,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Session 1
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -253,6 +273,67 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objectives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-geospatial-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Geospatial Modelling?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Libraries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nigeria-administrative-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nigeria Administrative Boundaries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -385,6 +466,58 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objectives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-geospatial-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Geospatial Modelling?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Libraries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nigeria-administrative-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nigeria Administrative Boundaries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -403,9 +536,34 @@
   
 
 
-  <h1>Session 1</h1>
-
-
+<h1 id="session-1-introduction-setup">Session 1: Introduction &amp; Setup</h1>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Understand the basics of geospatial data and its relevance to public health</li>
+<li>Set up your Python environment for geospatial analysis</li>
+</ul>
+<h3 id="what-is-geospatial-modelling">What is Geospatial Modelling?</h3>
+<p>Geospatial modelling uses location-based data to understand patterns, risks, and solutions for public health issues. In Nigeria, this approach helps target vaccination campaigns, monitor disease outbreaks, and allocate resources more effectively.</p>
+<h3 id="required-libraries">Required Libraries</h3>
+<p>We will use several Python libraries for geospatial analysis and visualization. Make sure you have installed all packages from <code>requirements.txt</code>.</p>
+<pre><code class="language-python">import geopandas as gpd
+import rasterio
+import folium
+import pandas as pd
+import matplotlib.pyplot as plt
+</code></pre>
+<h3 id="nigeria-administrative-boundaries">Nigeria Administrative Boundaries</h3>
+<p>Download the shapefile from <a href="https://gadm.org/download_country.html">GADM</a> or <a href="https://data.humdata.org/dataset/nga-administrative-boundaries">HDX</a> and place it in the <code>data/</code> folder. This will allow us to visualize and analyze data at the state or local government area (LGA) level.</p>
+<pre><code class="language-python">nigeria = gpd.read_file('data/gadm41_NGA_shp/gadm41_NGA_1.shp')
+fig, ax = plt.subplots(figsize=(10, 8))
+nigeria.plot(ax=ax, color='lightgray', edgecolor='black')
+plt.title('Nigeria - Administrative Boundaries')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
+plt.show()
+</code></pre>
+<hr />
+<p>Next: <a href="../session2_data_exploration_and_mapping/">Session 2 - Data Exploration &amp; Mapping</a></p>
 
 
 

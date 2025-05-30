@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#session-4-predictive-modelling-communicating-results" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -307,6 +312,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Session 4
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -319,6 +339,67 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objectives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-predicting-future-outbreaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Predicting Future Outbreaks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-interactive-maps-for-stakeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Interactive Maps for Stakeholders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-dashboard-and-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Dashboard and Reporting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -385,6 +466,58 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objectives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-predicting-future-outbreaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Predicting Future Outbreaks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-interactive-maps-for-stakeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Interactive Maps for Stakeholders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-dashboard-and-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Dashboard and Reporting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -403,9 +536,46 @@
   
 
 
-  <h1>Session 4</h1>
-
-
+<h1 id="session-4-predictive-modelling-communicating-results">Session 4: Predictive Modelling &amp; Communicating Results</h1>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Use your model to predict future outbreaks or risk areas</li>
+<li>Visualize predictions on maps</li>
+<li>Learn best practices for communicating results to public health stakeholders</li>
+</ul>
+<h3 id="step-1-predicting-future-outbreaks">Step 1: Predicting Future Outbreaks</h3>
+<pre><code class="language-python">future_X = merged[['population', 'facilities', 'vacc_coverage']]
+future_preds = clf.predict(future_X)
+merged['future_risk'] = future_preds
+fig, ax = plt.subplots(figsize=(10, 8))
+merged.plot(column='future_risk', ax=ax, legend=True, cmap='coolwarm', edgecolor='black')
+plt.title('Predicted Disease Risk (Future Scenario)')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
+plt.show()
+</code></pre>
+<h3 id="step-2-interactive-maps-for-stakeholders">Step 2: Interactive Maps for Stakeholders</h3>
+<pre><code class="language-python">import folium
+m = folium.Map(location=[9.082, 8.6753], zoom_start=6)
+for idx, row in merged.iterrows():
+    if hasattr(row.geometry, 'centroid'):
+        lat = row.geometry.centroid.y
+        lon = row.geometry.centroid.x
+    else:
+        lat = row['lat']
+        lon = row['lon']
+    color = 'red' if row['future_risk'] else 'green'
+    folium.CircleMarker([lat, lon], radius=5, color=color, fill=True, fill_opacity=0.7).add_to(m)
+m.save('data/nigeria_predicted_risk_map.html')
+m
+</code></pre>
+<h3 id="step-3-dashboard-and-reporting">Step 3: Dashboard and Reporting</h3>
+<ul>
+<li>Export your results as CSV, HTML maps, or use tools like Tableau Public or PowerBI for dashboards.</li>
+<li>Summarize key findings and recommendations for public health action.</li>
+</ul>
+<hr />
+<p>Congratulations! You have completed the beginner-friendly geospatial modelling course for vaccine-preventable diseases in Nigeria.</p>
 
 
 

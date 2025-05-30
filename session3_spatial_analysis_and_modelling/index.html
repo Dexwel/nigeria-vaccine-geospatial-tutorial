@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#session-3-spatial-analysis-modelling-disease-risk-in-nigeria" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -285,6 +290,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Session 3
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -297,6 +317,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objectives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-spatial-autocorrelation-morans-i" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Spatial Autocorrelation (Moran's I)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-risk-modelling-random-forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Risk Modelling (Random Forest)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -385,6 +457,49 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objectives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-spatial-autocorrelation-morans-i" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Spatial Autocorrelation (Moran's I)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-risk-modelling-random-forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Risk Modelling (Random Forest)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -403,9 +518,39 @@
   
 
 
-  <h1>Session 3</h1>
-
-
+<h1 id="session-3-spatial-analysis-modelling-disease-risk-in-nigeria">Session 3: Spatial Analysis &amp; Modelling Disease Risk in Nigeria</h1>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Calculate spatial autocorrelation to identify clustering of disease cases</li>
+<li>Build a simple predictive model for disease risk using Random Forest</li>
+</ul>
+<h3 id="step-1-spatial-autocorrelation-morans-i">Step 1: Spatial Autocorrelation (Moran's I)</h3>
+<pre><code class="language-python">import geopandas as gpd
+import pandas as pd
+import libpysal
+import esda
+nigeria = gpd.read_file('data/gadm41_NGA_shp/gadm41_NGA_1.shp')
+disease = pd.read_csv('data/measles_cases.csv')
+merged = nigeria.merge(disease, left_on='NAME_1', right_on='state')
+w = libpysal.weights.Queen.from_dataframe(merged)
+mi = esda.Moran(merged['cases'], w)
+print(f&quot;Moran's I: {mi.I:.3f}, p-value: {mi.p_sim:.3f}&quot;)
+</code></pre>
+<p>A significant positive Moran's I indicates clustering of disease cases, while a value near zero suggests randomness.</p>
+<h3 id="step-2-risk-modelling-random-forest">Step 2: Risk Modelling (Random Forest)</h3>
+<pre><code class="language-python">from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+X = merged[['population', 'facilities', 'vacc_coverage']]
+y = merged['cases'] &gt; 0
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+clf = RandomForestClassifier(n_estimators=100, random_state=42)
+clf.fit(X_train, y_train)
+preds = clf.predict(X_test)
+print(classification_report(y_test, preds))
+</code></pre>
+<hr />
+<p>Next: <a href="../session4_predictive_modelling_and_communication/">Session 4 - Predictive Modelling &amp; Communication</a></p>
 
 
 

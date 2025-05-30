@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#session-2-data-exploration-mapping-disease-incidence-in-nigeria" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -263,6 +268,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Session 2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -275,6 +295,85 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objectives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-nigeria-population-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Nigeria Population Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-health-facility-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Health Facility Locations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-disease-incidence-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Disease Incidence Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-load-and-preview-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Load and Preview Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-map-disease-incidence-and-health-facilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Map Disease Incidence and Health Facilities
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -385,6 +484,76 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objectives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-nigeria-population-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Nigeria Population Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-health-facility-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Health Facility Locations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-disease-incidence-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Disease Incidence Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-load-and-preview-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Load and Preview Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-map-disease-incidence-and-health-facilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Map Disease Incidence and Health Facilities
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -403,9 +572,42 @@
   
 
 
-  <h1>Session 2</h1>
+<h1 id="session-2-data-exploration-mapping-disease-incidence-in-nigeria">Session 2: Data Exploration &amp; Mapping Disease Incidence in Nigeria</h1>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Load and preview population, health facility, and disease incidence data for Nigeria</li>
+<li>Visualize health facilities and disease cases on an interactive map</li>
+</ul>
+<h3 id="step-1-nigeria-population-data">Step 1: Nigeria Population Data</h3>
+<p>Download gridded population data from <a href="https://www.worldpop.org/geodata/summary?id=24777">WorldPop Nigeria</a> and place it in the <code>data/</code> folder.</p>
+<h3 id="step-2-health-facility-locations">Step 2: Health Facility Locations</h3>
+<p>Download health facility data from the <a href="https://hfr.health.gov.ng/">Nigeria Health Facility Registry</a> or <a href="https://data.humdata.org/dataset/health-facilities-in-nigeria">HDX Health Facilities</a>. Save the file as <code>data/health_facilities.csv</code> or use the provided download script.</p>
+<h3 id="step-3-disease-incidence-data">Step 3: Disease Incidence Data</h3>
+<p>Download measles or polio incidence data from <a href="https://ncdc.gov.ng/reports/weekly">NCDC</a> or <a href="https://www.who.int/data/gho/data/themes/topics/immunization">WHO</a> and save as <code>data/measles_cases.csv</code>.</p>
+<h3 id="step-4-load-and-preview-data">Step 4: Load and Preview Data</h3>
+<pre><code class="language-python">import pandas as pd
+import geopandas as gpd
+import rasterio
 
+pop_raster = rasterio.open('data/nga_ppp_2020.tif')
+facilities = pd.read_csv('data/health_facilities.csv')
+disease = pd.read_csv('data/measles_cases.csv')
 
+print('Health Facilities:')
+print(facilities.head())
+print('\nDisease Incidence:')
+print(disease.head())
+</code></pre>
+<h3 id="step-5-map-disease-incidence-and-health-facilities">Step 5: Map Disease Incidence and Health Facilities</h3>
+<pre><code class="language-python">import folium
+m = folium.Map(location=[9.082, 8.6753], zoom_start=6)
+for idx, row in facilities.iterrows():
+    folium.CircleMarker([row['lat'], row['lon']], radius=2, color='blue', fill=True, fill_opacity=0.7).add_to(m)
+m.save('data/nigeria_health_facilities_map.html')
+m
+</code></pre>
+<hr />
+<p>Next: <a href="../session3_spatial_analysis_and_modelling/">Session 3 - Spatial Analysis &amp; Modelling</a></p>
 
 
 
