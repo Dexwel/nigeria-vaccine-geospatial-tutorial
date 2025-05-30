@@ -59,6 +59,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#data-scripts" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -349,6 +354,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Data & Scripts
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -361,6 +381,52 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datasets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-download-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Download Script
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -383,6 +449,43 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Datasets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scripts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-download-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Download Script
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -401,9 +504,42 @@
   
 
 
-  <h1>Data & Scripts</h1>
+<h1 id="data-scripts">Data &amp; Scripts</h1>
+<p>This section provides an overview of the datasets and scripts used in this tutorial. All resources are Nigeria-specific and support hands-on geospatial analysis.</p>
+<h2 id="datasets">Datasets</h2>
+<ul>
+<li><strong>Nigeria Administrative Boundaries</strong>: Download from <a href="https://gadm.org/download_country.html">GADM</a> or <a href="https://data.humdata.org/dataset/nga-administrative-boundaries">HDX</a> and place in the <code>data/</code> folder as <code>gadm41_NGA_shp.zip</code> (extract to use the <code>.shp</code> file).</li>
+<li><strong>Population Data</strong>: Download from <a href="https://www.worldpop.org/geodata/summary?id=24777">WorldPop Nigeria</a> and save as <code>data/nga_ppp_2020.tif</code>.</li>
+<li><strong>Health Facility Locations</strong>: Download from <a href="https://hfr.health.gov.ng/">Nigeria HFR</a> or <a href="https://data.humdata.org/dataset/health-facilities-in-nigeria">HDX Health Facilities</a> and save as <code>data/health_facilities.csv</code>.</li>
+<li><strong>Disease Incidence Data</strong>: Download from <a href="https://ncdc.gov.ng/reports/weekly">NCDC</a> or <a href="https://www.who.int/data/gho/data/themes/topics/immunization">WHO</a> and save as <code>data/measles_cases.csv</code>.</li>
+</ul>
+<h2 id="scripts">Scripts</h2>
+<ul>
+<li><strong><code>scripts/download_datasets.py</code></strong>: Python script to automate downloading of public datasets. Run with:</li>
+</ul>
+<pre><code class="language-bash">python scripts/download_datasets.py
+</code></pre>
+<h2 id="example-download-script">Example: Download Script</h2>
+<pre><code class="language-python">import os
+import requests
 
+def download_file(url, dest):
+    if os.path.exists(dest):
+        print(f&quot;Already downloaded: {dest}&quot;)
+        return
+    print(f&quot;Downloading {url} ...&quot;)
+    r = requests.get(url, stream=True)
+    r.raise_for_status()
+    with open(dest, 'wb') as f:
+        for chunk in r.iter_content(chunk_size=8192):
+            f.write(chunk)
+    print(f&quot;Saved to {dest}&quot;)
 
+# Example usage:
+download_file('https://gadm.org/download_country.html', 'data/gadm41_NGA_shp.zip')
+</code></pre>
+<hr />
+<p>For more details, see the <a href="../README.md">README</a> or explore the scripts and data folders directly.</p>
 
 
 
