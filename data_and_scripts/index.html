@@ -568,10 +568,14 @@
 <li><strong>Disease Incidence Data</strong>: </li>
 <li>Download from <a href="https://ncdc.gov.ng/reports/weekly">NCDC</a> or <a href="https://www.who.int/data/gho/data/themes/topics/immunization">WHO</a></li>
 <li>Save as <code>data/measles_cases.csv</code></li>
+<li><strong>Vaccine Coverage Data</strong>: </li>
+<li>Downloaded automatically from <a href="https://immunizationdata.who.int/data/nga.csv">WHO/UNICEF Immunization Data</a></li>
+<li>Saved as <code>data/nga_vaccine_coverage.csv</code> by the <code>download_datasets.py</code> script</li>
+<li>Use this file as a covariate in your geospatial analysis and modelling notebooks (e.g., to analyze the impact of vaccine coverage on disease risk)</li>
 </ul>
 <h2 id="scripts">Scripts</h2>
 <ul>
-<li><strong><code>scripts/download_datasets.py</code></strong>: Python script to automate downloading of public datasets. Run with:</li>
+<li><strong><code>scripts/download_datasets.py</code></strong>: Python script to automate downloading of public datasets, including vaccine coverage. Run with:</li>
 </ul>
 <pre><code class="language-bash">python scripts/download_datasets.py
 </code></pre>
@@ -592,7 +596,7 @@ def download_file(url, dest):
     print(f&quot;Saved to {dest}&quot;)
 
 # Example usage:
-download_file('https://geodata.ucdavis.edu/gadm/gadm4.1/shp/gadm41_NGA_shp.zip', 'data/gadm41_NGA_shp.zip')
+download_file('https://immunizationdata.who.int/data/nga.csv', 'data/nga_vaccine_coverage.csv')
 </code></pre>
 <hr />
 <p>For more details, see the <a href="../README.md">README</a> or explore the scripts and data folders directly.</p>
